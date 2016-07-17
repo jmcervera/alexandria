@@ -19,7 +19,6 @@ FactoryGirl.define do
     released_on "2015-10-11"
     publisher_id nil
     association :author, factory: :michael_hartl
-    author
   end
 
   factory :agile_web_development, class: Book do
