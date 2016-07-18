@@ -78,6 +78,20 @@ RSpec.describe 'Books', type: :request do
         end
       end
 
+      context "when sending invalid 'page' and 'per' parameters" do
+        before { get '/api/books?page=fake&per=10' }
+        it 'receives HTTP status 400' do
+          expect(response.status).to eq 400
+        end
+
+        it 'receives an error' do
+          expect(json_body['error']).to_not be nil
+        end
+
+        it "receives 'page=fake' as an invalid param" do
+          expect(json_body['error']['invalid_params']).to eq 'page=fake'
+        end
+      end
     end
   end
 
